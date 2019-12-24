@@ -1,0 +1,16 @@
+https://database.guide/how-to-install-sql-server-on-a-mac
+
+docker pull microsoft/mssql-server-linux
+docker run -d --name sql_server_docker -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=cb08005624!' -p 1433:1433 microsoft/mssql-server-linux
+suno npm i -g sql-cli
+
+
+FROM COMMAN LINE TYPE:
+
+docker ps
+
+docker run -d -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=cb08005624!' -p 1433:1433 microsoft/mssql-server-linux
+
+mssql -u sa -p cb08005624!
+
+select @@version

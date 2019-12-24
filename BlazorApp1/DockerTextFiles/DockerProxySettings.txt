@@ -1,0 +1,5 @@
+http://192.168.3.8:800/ 
+
+Share c drive  build error?
+try
+Set-NetConnectionProfile -interfacealias "vEthernet (DockerNAT)" -NetworkCategory Private

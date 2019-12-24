@@ -1,0 +1,13 @@
+docker login
+pass in credentials from docker hub account
+
+docker tag <ImageID> <HubName>/<ImageName>:latest
+docker tag 7311671bd64d 08005624/blazorapp1:latest
+
+docker push <HubName>/<ImageName>
+docker push 08005624/blazorapp1
+
+then on another PC
+docker pull 080805624/blazorapp1
+docker images
+docker run -d -p 32768:80 080805624/blazorapp1
