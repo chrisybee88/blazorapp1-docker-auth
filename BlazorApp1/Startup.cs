@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorApp1.Areas.Identity;
 using BlazorApp1.Data;
+using Microsoft.Net.Http.Headers;
 
 namespace BlazorApp1
 {
@@ -31,6 +32,8 @@ namespace BlazorApp1
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
@@ -56,6 +59,21 @@ namespace BlazorApp1
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(policy =>
+                policy.WithOrigins(
+                        "http://localhost:5000",
+                        "https://localhost:5001",
+                        "https://localhost/MyWeakCDN")
+                    .AllowAnyMethod()
+                    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+                    .AllowCredentials());
+
+            //app.UseCors(builder => builder
+            //    .AllowAnyOrigin()
+            //    .AllowAnyMethod()
+            //    .AllowAnyHeader()
+            //    .AllowCredentials());
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

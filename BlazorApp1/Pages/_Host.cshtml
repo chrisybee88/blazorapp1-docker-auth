@@ -14,6 +14,22 @@
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
+
+    <!-- https://app.pluralsight.com/course-player?clipId=f1c35460-f345-4435-a9b1-74ceaafde172 -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity -->
+    <!-- https://slproweb.com/products/Win32OpenSSL.html -->
+
+    <!-- Include external content -->
+    @* <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script> *@
+
+    <!-- generate an SRI for a file -->
+    <!-- cat FILENAME.js | openssl dgst -sha384 -binary | openssl base64 -A -->
+    <!-- or use VS code extension Generate SRI Hash -->
+
+    <script src="http://localhost/MyWeakCDN/jquery.js"
+            integrity="sha384-Pz8LCEs/JDxQeWg/LSo/P0B2Pz8/Pz8tPz8/DnU/JGs/bn44Rj8/MTM/Pz9IPz9zDQo="
+            crossorigin="anonymous"></script>
+
 </head>
 <body>
     <app>
