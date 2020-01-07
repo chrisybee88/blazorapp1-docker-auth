@@ -10,6 +10,12 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- meta tag -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy -->
+    <!-- https://app.pluralsight.com/course-player?clipId=80a764a8-5d72-41a8-a4c3-a5f8360726a1 -->
+    <meta http-equiv="Content-Security-Policy: script-src https://localhost/MyWeakCDN/" content="default-src https:">
+
     <title>BlazorApp1</title>
     <base href="~/" />
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
@@ -19,19 +25,20 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity -->
     <!-- https://slproweb.com/products/Win32OpenSSL.html -->
     <!-- Include external content -->
-    <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script>
+    @*<script type="text/javascript" src="https://localhost/MyWeakCDN/jquery.js"></script>*@
 
     <!-- generate an SRI for a file using PowerShell once Win64OpenSSL-1_1_1d.msi has been installed and added to path -->
     <!-- cat FILENAME.js | openssl dgst -sha256 -binary | openssl base64 -A -->
     <!-- cat jquery.js | openssl dgst -sha256 -binary | openssl base64 -A -->
     <!-- gives a different SHA to what chrome expects, use the sha from chrome, chrome must use different SSL version?  -->
     <!-- https://security.stackexchange.com/a/127162 -->
-
     @*<script src="https://localhost/MyWeakCDN/jquery.js"
-            integrity="sha256-Cn8hZTPVK2yaHZabPNZLRTTDUaoLvK8/OkyjaDaa0aM="
-            crossorigin="anonymous"></script>*@
-    
+        integrity="sha256-Cn8hZTPVK2yaHZabPNZLRTTDUaoLvK8/OkyjaDaa0aM="
+        crossorigin="anonymous"></script>*@
+
     <!-- But what if this file version changes and that's ok, for that we need a content security policy-->
+    <!-- http not https, content security policy will load js over https-->
+    <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script>
 
 </head>
     <body>
