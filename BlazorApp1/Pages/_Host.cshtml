@@ -41,22 +41,23 @@
 
     <!-- But what if this file version changes and that's ok, for that we need a content security policy-->
     <!-- http not https, content security policy will load js over https-->
-    <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script>
+    <script type="text/javascript" src="https://localhost/MyWeakCDN/jquery.js"></script>
 
 </head>
 <body>
     <!-- https://app.pluralsight.com/course-player?clipId=f1c35460-f345-4435-a9b1-74ceaafde172 -->
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection -->
     <!-- https://codepen.io/rvernagus/pen/xrKOXp -->
     <!-- “><script>alert(document.cookie)</script>-->
     <!-- https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001) -->
     <a href="?name=<script>alert(0);</script>">Click for XSS</a>
 
     @*<script type="text/javascript">
-        window.onload = function exampleFunction() {
-            let params = new URLSearchParams(window.location.search);
-            document.getElementById("xss-content").innerHTML = params.get("name");
-        }
-    </script>*@
+            window.onload = function exampleFunction() {
+                let params = new URLSearchParams(window.location.search);
+                document.getElementById("xss-content").innerHTML = params.get("name");
+            }
+        </script>*@
 
     <!-- ?name=chris -->
     <!-- ?name=<script>alert(0);</script> -->
