@@ -1,0 +1,19 @@
+<html>
+<head></html>
+<body>
+<a href="?name=<script>alert(0);</script>">Click for XSS</a>
+
+<script type="text/javascript">
+        window.onload = function exampleFunction() {
+            let params = new URLSearchParams(window.location.search);
+            document.getElementById("xss-content").innerHTML = params.get("name");
+        }
+    </script>
+
+    <!-- ?name=chris -->
+    <!-- ?name=<script>alert(0);</script> -->
+    <h1>XSS Demo</h1>
+    <h2>Name</h2>
+    <p id="xss-content"></p>
+</body>
+</html>

@@ -41,22 +41,41 @@
     <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script>
 
 </head>
-    <body>
-        <app>
-            <component type="typeof(App)" render-mode="ServerPrerendered" />
-        </app>
+<body>
+    <!-- https://app.pluralsight.com/course-player?clipId=f1c35460-f345-4435-a9b1-74ceaafde172 -->
+    <!-- https://codepen.io/rvernagus/pen/xrKOXp -->
+    <!-- “><script>alert(document.cookie)</script>-->
+    <!-- https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001) -->
+    <a href="?name=<script>alert(0);</script>">Click for XSS</a>
 
-        <div id="blazor-error-ui">
-            <environment include="Staging,Production">
-                An error has occurred. This application may no longer respond until reloaded.
-            </environment>
-            <environment include="Development">
-                An unhandled exception has occurred. See browser dev tools for details.
-            </environment>
-            <a href="" class="reload">Reload</a>
-            <a class="dismiss">🗙</a>
-        </div>
+    <script type="text/javascript">
+        window.onload = function exampleFunction() {
+            let params = new URLSearchParams(window.location.search);
+            document.getElementById("xss-content").innerHTML = params.get("name");
+        }
+    </script>
 
-        <script src="_framework/blazor.server.js"></script>
-    </body>
+    <!-- ?name=chris -->
+    <!-- ?name=<script>alert(0);</script> -->
+    <h1>XSS Demo</h1>
+    <h2>Name</h2>
+    <p id="xss-content"></p>
+
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
     </html>
