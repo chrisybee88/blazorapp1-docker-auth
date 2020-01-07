@@ -19,17 +19,19 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity -->
     <!-- https://slproweb.com/products/Win32OpenSSL.html -->
     <!-- Include external content -->
-    @*<script type="text/javascript" src="https://localhost/MyWeakCDN/jquery.js"></script>*@
+    <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script>
 
     <!-- generate an SRI for a file using PowerShell once Win64OpenSSL-1_1_1d.msi has been installed and added to path -->
     <!-- cat FILENAME.js | openssl dgst -sha256 -binary | openssl base64 -A -->
     <!-- cat jquery.js | openssl dgst -sha256 -binary | openssl base64 -A -->
-    <!-- gives a different SHA to what chome expects, use teh sha from chome, chrome must use different SSL version?  -->
-    
-    <!-- crossorigin="anonymous"-->
-    <script src="https://localhost/MyWeakCDN/jquery.js"
+    <!-- gives a different SHA to what chrome expects, use the sha from chrome, chrome must use different SSL version?  -->
+    <!-- https://security.stackexchange.com/a/127162 -->
+
+    @*<script src="https://localhost/MyWeakCDN/jquery.js"
             integrity="sha256-Cn8hZTPVK2yaHZabPNZLRTTDUaoLvK8/OkyjaDaa0aM="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script>*@
+    
+    <!-- But what if this file version changes and that's ok, for that we need a content security policy-->
 
 </head>
     <body>
