@@ -26,13 +26,25 @@ namespace BlazorApp1
             Configuration = configuration;
         }
 
+        //readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors();
+
+            //services.AddCors(options =>
+            //{
+            //    options.AddPolicy(MyAllowSpecificOrigins,
+            //        builder =>
+            //        {
+            //            builder.WithOrigins("https://localhost/MyWeakCDN/",
+            //                "https://localhost/other");
+            //        });
+            //});
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -60,20 +72,23 @@ namespace BlazorApp1
                 app.UseHsts();
             }
 
-            app.UseCors(policy =>
-                policy.WithOrigins(
-                        "http://localhost:5000",
-                        "https://localhost:5001",
-                        "https://localhost/MyWeakCDN")
-                    .AllowAnyMethod()
-                    .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
-                    .AllowCredentials());
+            //app.UseCors(policy =>
+            //    policy.WithOrigins(
+            //            "http://localhost:5000",
+            //            "https://localhost:5001",
+            //            "https://localhost:32780",
+            //            "https://localhost/MyWeakCDN",
+            //            "*")
+            //        .AllowAnyMethod()
+            //        .WithHeaders(HeaderNames.ContentType, HeaderNames.Authorization, "x-custom-header")
+            //        .AllowCredentials());
 
             //app.UseCors(builder => builder
             //    .AllowAnyOrigin()
             //    .AllowAnyMethod()
-            //    .AllowAnyHeader()
-            //    .AllowCredentials());
+            //    .AllowAnyHeader());
+
+            //app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

@@ -18,35 +18,36 @@
     <!-- https://app.pluralsight.com/course-player?clipId=f1c35460-f345-4435-a9b1-74ceaafde172 -->
     <!-- https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity -->
     <!-- https://slproweb.com/products/Win32OpenSSL.html -->
-
     <!-- Include external content -->
-    @* <script type="text/javascript" src="http://localhost/MyWeakCDN/jquery.js"></script> *@
+    @*<script type="text/javascript" src="https://localhost/MyWeakCDN/jquery.js"></script>*@
 
-    <!-- generate an SRI for a file -->
-    <!-- cat FILENAME.js | openssl dgst -sha384 -binary | openssl base64 -A -->
-    <!-- or use VS code extension Generate SRI Hash -->
-
-    <script src="http://localhost/MyWeakCDN/jquery.js"
-            integrity="sha384-Pz8LCEs/JDxQeWg/LSo/P0B2Pz8/Pz8tPz8/DnU/JGs/bn44Rj8/MTM/Pz9IPz9zDQo="
+    <!-- generate an SRI for a file using PowerShell once Win64OpenSSL-1_1_1d.msi has been installed and added to path -->
+    <!-- cat FILENAME.js | openssl dgst -sha256 -binary | openssl base64 -A -->
+    <!-- cat jquery.js | openssl dgst -sha256 -binary | openssl base64 -A -->
+    <!-- gives a different SHA to what chome expects, use teh sha from chome, chrome must use different SSL version?  -->
+    
+    <!-- crossorigin="anonymous"-->
+    <script src="https://localhost/MyWeakCDN/jquery.js"
+            integrity="sha256-Cn8hZTPVK2yaHZabPNZLRTTDUaoLvK8/OkyjaDaa0aM="
             crossorigin="anonymous"></script>
 
 </head>
-<body>
-    <app>
-        <component type="typeof(App)" render-mode="ServerPrerendered" />
-    </app>
+    <body>
+        <app>
+            <component type="typeof(App)" render-mode="ServerPrerendered" />
+        </app>
 
-    <div id="blazor-error-ui">
-        <environment include="Staging,Production">
-            An error has occurred. This application may no longer respond until reloaded.
-        </environment>
-        <environment include="Development">
-            An unhandled exception has occurred. See browser dev tools for details.
-        </environment>
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
+        <div id="blazor-error-ui">
+            <environment include="Staging,Production">
+                An error has occurred. This application may no longer respond until reloaded.
+            </environment>
+            <environment include="Development">
+                An unhandled exception has occurred. See browser dev tools for details.
+            </environment>
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
 
-    <script src="_framework/blazor.server.js"></script>
-</body>
-</html>
+        <script src="_framework/blazor.server.js"></script>
+    </body>
+    </html>
