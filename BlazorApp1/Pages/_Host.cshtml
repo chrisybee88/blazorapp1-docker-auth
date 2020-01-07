@@ -1,4 +1,7 @@
 ﻿@page "/"
+@using System.IO
+@using System.Net
+@using System.Web
 @namespace BlazorApp1.Pages
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -48,18 +51,29 @@
     <!-- https://www.owasp.org/index.php/Testing_for_Reflected_Cross_site_scripting_(OTG-INPVAL-001) -->
     <a href="?name=<script>alert(0);</script>">Click for XSS</a>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         window.onload = function exampleFunction() {
             let params = new URLSearchParams(window.location.search);
             document.getElementById("xss-content").innerHTML = params.get("name");
         }
-    </script>
+    </script>*@
 
     <!-- ?name=chris -->
     <!-- ?name=<script>alert(0);</script> -->
     <h1>XSS Demo</h1>
     <h2>Name</h2>
-    <p id="xss-content"></p>
+    <p id="xss-content">
+        @{
+            string name = String.Empty;
+            var nameQuerystring = Request.QueryString.Value;
+            if (!string.IsNullOrEmpty(nameQuerystring))
+            {
+                var myEncodedString = nameQuerystring.Split("=")[1].ToString();
+                name = WebUtility.UrlDecode(myEncodedString);
+            }
+        }
+        @Html.Raw(name)
+    </p>
 
     <app>
         <component type="typeof(App)" render-mode="ServerPrerendered" />
