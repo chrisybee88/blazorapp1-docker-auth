@@ -21,6 +21,9 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BlazorApp1.dll"]
 
+# Build locally
 # docker build -f .\Dockerfile -t blazorapp1-docker-auth:latest .
+# run
 # docker run -it --rm -p 8000:80 blazorapp1-docker-auth:latest
+# run from Docker Hub
 # docker run -it --rm -p 8000:80 08005624/blazorapp1-docker-auth:latest
