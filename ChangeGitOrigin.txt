@@ -2,6 +2,6 @@ git remote -v
 
 git remote set-url origin  http://chltfl04:8080/tfs/iPipelineUK_RND/Sandbox/_git/blazorapp1-docker-auth
 
-copy to skynet FTP
 git remote set-url origin http://cybertron:8080/tfs/Sandbox/RND/_git/blazorapp1-docker-auth    
-git push
+
+git remote set-url origin https://github.com/chrisybee88/blazorapp1-docker-auth.git
